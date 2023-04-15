@@ -13,6 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
 public class DesktopFrame extends JFrame
 {
@@ -84,6 +85,20 @@ public class DesktopFrame extends JFrame
 	
 	public static void main(String[] args)
 	{
+		try {
+			
+			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}		
+		}
+		catch (Exception e) {
+		// If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+	
 		DesktopFrame desktopFrame = new DesktopFrame();
 		desktopFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		desktopFrame.setSize(600, 480);
